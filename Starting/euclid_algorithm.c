@@ -7,12 +7,12 @@ int gcd(int u, int v)
 {
 	if(u <= 0 || v <= 0)
 	{
-		return 1;
+		return -1;
 	}
 	int t;
 	while(u > 0)
 	{
-		if(u > v)
+		if(u < v)
 		{
 			t = u;
 			u = v;
@@ -20,12 +20,11 @@ int gcd(int u, int v)
 		}
 		u = u-v;
 	}
-
-	return 1;
+	return v;
 }
 
 int main(void)
 {
-	printf("%d", gcd(10, 5));
+	printf("%d %d %d\n", 10, 5, gcd(10, 5));
 	return 0;
 }

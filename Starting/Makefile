@@ -1,10 +1,10 @@
 C=gcc
-TARGET=eucli_algorithm.c
+TARGET=euclid_algorithm.c
 FILE=compiled
 CFLAGS=-Wall -g -o $(FILE)
 
 all:
-	$(CC) $(TARGET) $(CFLAGS)
+	$(CC) $(TARGET) $(CFLAGS) && ./$(FILE)
 
 clean:
 	rm -f $(FILE)
