@@ -6,7 +6,7 @@
 int gcd(int u, int v)
 {
 	if(u == 0)
-	       return v;
+	    return v;
 	if(v == 0)
 		return u;	
 	int t;
