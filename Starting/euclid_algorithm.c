@@ -23,6 +23,15 @@ int gcd(int u, int v)
 	return v;
 }
 
+int gcdmod(int u, int v)
+{
+	if(u == 0)
+		return v;
+	if(v == 0)
+		return u;
+	return 0;
+}
+
 int main(void)
 {
 	printf("%d %d %d\n", 10, 5, gcd(10, 5));
