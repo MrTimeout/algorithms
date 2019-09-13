@@ -1,1 +1,39 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int isHere(int* arr, int *trgt)
+{
+    int len = sizeof(arr) / sizeof(*arr);
+    for(int i = 0; i < len; i++)
+    {
+        if(*(arr+i) == *trgt)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* twoSum(int* nums, int numsSize, int target, int* returnSize)
+{
+    int* result = malloc(2 * sizeof(int));
+    int* tmpArr = malloc(numsSize * sizeof(int));
+    int tmp, tm;
+    for(int i = 0; i < numsSize; i++)
+    {
+        tmp = target - *(nums+i);
+        tm  = isHere(tmpArr, (nums+i));
+        if(i >= 1 &&  tm != -1)
+        {
+            *(result)   = tm;
+            *(result+1) = i;
+            return result;
+        }
+        *(tmpArr+i) = tmp;
+    }
+    return result;
+}
 
