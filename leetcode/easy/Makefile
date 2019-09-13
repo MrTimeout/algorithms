@@ -7,4 +7,4 @@ all:
 	$(CC) $(TARGET) $(CFLAGS) && ./$(FILE)
 
 clean:
-i	rm -f $(FILE)
+	rm -f $(FILE)
