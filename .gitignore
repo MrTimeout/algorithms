@@ -1,0 +1,2 @@
+# Ignore all the files and folders which name is compile, because it is the result of the makefile
+**/compiled
