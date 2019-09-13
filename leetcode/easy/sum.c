@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int isHere(int* arr, int *trgt)
+int isHere(int* arr, int* trgt)
 {
     int len = sizeof(arr) / sizeof(*arr);
     for(int i = 0; i < len; i++)
@@ -26,14 +26,31 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
     {
         tmp = target - *(nums+i);
         tm  = isHere(tmpArr, (nums+i));
-        if(i >= 1 &&  tm != -1)
+        if(i >= 1 && tm != -1)
         {
-            *(result)   = tm;
+            *result     = tm;
             *(result+1) = i;
+	    printf("%d\n", *result);
+	    printf("%d\n", *(result+1));
             return result;
         }
         *(tmpArr+i) = tmp;
     }
     return result;
+}
+
+int main(void)
+{
+	int len    = 5, 
+	    trgt   = 4,
+	    s	   = 2;
+	int* arr   = malloc(len * sizeof(int));
+	int* rSize = &s;
+	for(int i = 0; i < len; i++)
+	{
+		*(arr+i) = i;
+	}
+	twoSum(arr, len, trgt, rSize);
+	return 0;
 }
 
