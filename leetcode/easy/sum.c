@@ -41,14 +41,14 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
 
 int main(void)
 {
-	int len    = 5, 
-	    trgt   = 4,
+	int len    = 5,
+	    trgt   = -8,
 	    s	   = 2;
 	int* arr   = malloc(len * sizeof(int));
 	int* rSize = &s;
 	for(int i = 0; i < len; i++)
 	{
-		*(arr+i) = i;
+		*(arr+i) = i * -1;
 	}
 	twoSum(arr, len, trgt, rSize);
 	return 0;
