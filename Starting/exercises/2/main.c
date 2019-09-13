@@ -4,13 +4,13 @@
 
 char* reverse(const char* str)
 {
-    int len = sizeof(str);
-    char* str_final = malloc(len);
-    for(int i = 0; i < len; i++)
-    {
-        strcat(str_final, *(str+len-1-i));
-    }
-    return str_final;
+	int len = strlen(str);
+	char* str_reverse = malloc(len);
+	for(int i = 0; i < len; i++)
+	{
+		*(str_reverse+i) = *(str+len-i-1);
+	}
+	return str_reverse;
 }
 
 char* binary(int x)
