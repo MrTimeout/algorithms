@@ -1,6 +1,34 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+int* testArr(int from, int to, int seq)
+{
+	int swap;
+	if(seq == 0)
+	{
+		return NULL;
+	}
+	else if(seq > 0 && from > to)
+	{
+		swap = from;
+		from = to;
+		to   swap;		
+	}
+	else if(seq < 0 && from < to)
+	{
+		swap = from;
+		from = to;
+		to   = swap;
+	}	
+	int* result = malloc(sizeof(int) * abs((int) (abs(to) - abs(from)) / seq));
+	for(;from < to; from += seq)
+	{
+		*result = from;
+		result++;
+	}
+	return result;
+}
+
 int isHere(int* arr, int* trgt)
 {
     int len = sizeof(arr) / sizeof(*arr);
@@ -24,7 +52,8 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
     int tmp, tm;
     for(int i = 0; i < numsSize; i++)
     {
-        tmp = target - *(nums+i);
+        tmp = target + (*(nums+i) > 0 ? *(nums+i) : *(nums+i)*-1);
+	printf("%d\n", tmp);
         tm  = isHere(tmpArr, (nums+i));
         if(i >= 1 && tm != -1)
         {
@@ -36,7 +65,7 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
         }
         *(tmpArr+i) = tmp;
     }
-    return result;
+    return NULL;
 }
 
 int main(void)
@@ -48,9 +77,10 @@ int main(void)
 	int* rSize = &s;
 	for(int i = 0; i < len; i++)
 	{
-		*(arr+i) = i * -1;
+		*(arr+i) = i * -1 - 1;
 	}
 	twoSum(arr, len, trgt, rSize);
+	
 	return 0;
 }
 
