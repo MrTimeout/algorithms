@@ -1,7 +1,18 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int* testArr(int from, int to, int seq)
+void printArr(int* arr)
+{
+	int len = *arr;
+	printf("{ ");
+	for(int i = 1; i < len; i++)
+	{
+		printf("%d  ", *(arr+i));
+	}
+	printf("}\n");
+}
+
+int* seq(int from, int to, int seq, int result[])
 {
 	int swap;
 	if(seq == 0)
@@ -12,27 +23,29 @@ int* testArr(int from, int to, int seq)
 	{
 		swap = from;
 		from = to;
-		to   swap;		
+		to   = swap;		
 	}
 	else if(seq < 0 && from < to)
 	{
 		swap = from;
 		from = to;
 		to   = swap;
-	}	
-	int* result = malloc(sizeof(int) * abs((int) (abs(to) - abs(from)) / seq));
+	}
+	int len = abs((int) (abs(to) - abs(from)) / seq) + 1;
+	result = realloc(result, len * sizeof(int));
+	result[0] = len;
+	int i = 1;
 	for(;from < to; from += seq)
 	{
-		*result = from;
-		result++;
+		result[i] = from;
+		i++;
 	}
 	return result;
 }
 
-int isHere(int* arr, int* trgt)
+int isHere(int* arr, int *len, int* trgt)
 {
-    int len = sizeof(arr) / sizeof(*arr);
-    for(int i = 0; i < len; i++)
+    for(int i = 0; i < *len; i++)
     {
         if(*(arr+i) == *trgt)
         {
@@ -54,13 +67,13 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
     {
         tmp = target + (*(nums+i) > 0 ? *(nums+i) : *(nums+i)*-1);
 	printf("%d\n", tmp);
-        tm  = isHere(tmpArr, (nums+i));
+        tm  = isHere(tmpArr, &i, (nums+i));
         if(i >= 1 && tm != -1)
         {
             *result     = tm;
             *(result+1) = i;
-	    printf("%d\n", *result);
-	    printf("%d\n", *(result+1));
+			// printf("%d\n", *result);
+			// printf("%d\n", *(result+1));
             return result;
         }
         *(tmpArr+i) = tmp;
@@ -70,17 +83,17 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
 
 int main(void)
 {
-	int len    = 5,
-	    trgt   = -8,
-	    s	   = 2;
-	int* arr   = malloc(len * sizeof(int));
-	int* rSize = &s;
-	for(int i = 0; i < len; i++)
-	{
-		*(arr+i) = i * -1 - 1;
-	}
-	twoSum(arr, len, trgt, rSize);
-	
+	// int len    = 5,
+	//     trgt   = -8,
+	//     s	   = 2;
+	// int* arr   = malloc(len * sizeof(int));
+	// int* rSize = &s;
+	// for(int i = 0; i < len; i++)
+	// {
+	// 	*(arr+i) = i * -1 - 1;
+	// }
+	// twoSum(arr, len, trgt, rSize);
+	int* ptr;
+	printArr(seq(1, 10, 1, ptr));
 	return 0;
 }
-
