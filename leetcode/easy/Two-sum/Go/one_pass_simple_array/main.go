@@ -1,13 +1,5 @@
 package main
 
-//<-nums
-//for-loop
-//rest
-//if exists
-//return
-//else
-//add to the arr
-
 func main() {
 
 }
@@ -22,6 +14,14 @@ func isHere(arr []int, trgt int) int {
 	return -1
 }
 
+//<-nums
+//for-loop
+//rest
+//if exists
+//return
+//else
+//add to the arr
+//
 func twoSum(nums []int, target int) []int {
 	len := len(nums)
 	tempArr := make([]int, 0, len)
