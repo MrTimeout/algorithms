@@ -27,6 +27,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'
 " }
+" execute it to update plugins vim +PluginInstall +qall
 
 
 " All of your Plugins must be added before the following line
