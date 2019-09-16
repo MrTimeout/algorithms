@@ -12,7 +12,7 @@ func insertionSort(arr []int) []int {
 		key := arr[j]
 		i := j - 1
 		for i >= 0 && arr[i] > key {
-			arr[i + 1] = key
+			arr[i + 1] = arr[i]
 			i--
 		}
 		arr[i + 1] = key
