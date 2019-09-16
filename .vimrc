@@ -1,3 +1,4 @@
+syntax on
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -17,9 +18,10 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+" Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
+"
+" Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -27,7 +29,6 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'
 " }
-" execute it to update plugins vim +PluginInstall +qall
 
 
 " All of your Plugins must be added before the following line
@@ -46,6 +47,11 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'morhet'
 
-set background=dark
-colorscheme PaperColor
+
+"colorscheme gruvbox
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:gruvbox_italic=1
+let g:gruvbox_contrasti_dark = 'hard'
+let g:gruvbox_termcolors = 256
