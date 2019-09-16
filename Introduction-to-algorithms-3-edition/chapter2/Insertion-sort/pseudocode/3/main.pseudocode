@@ -1,0 +1,9 @@
+
+A = { 1, 2, 3, 6, 10, 1, 4 }
+target = 6
+
+for i = 1 tp A.length
+	if A[i] == target then
+		return i
+	end if
+return NULL
