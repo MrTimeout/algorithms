@@ -4,7 +4,7 @@ FILE=compile.exe
 CFLAGS=-Wall -o $(FILE)
 
 all:
-	$(CC) $(TARGET) $(CFLAGS) && ./$(FILE)
+	$(CC) $(TARGET) $(CFLAGS) 
 
 rm:
 	rm $(FILE)
