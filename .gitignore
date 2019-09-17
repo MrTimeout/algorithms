@@ -3,3 +3,6 @@
 
 # Ignore my configuration of visual studio code
 **/.vscode
+
+# Ignoring compiled on windows
+**/compile.exe
