@@ -17,7 +17,7 @@ int equivalence_of_functions()
         c = getchar();
         if(c == EOF || ferror(stdin))
         {
-            printf("Error getting char using method int getchar(void)");
+            printf("\nError getting char using method int getchar(void)");
             clearerr(stdin);
             return 1;
         }
@@ -25,14 +25,43 @@ int equivalence_of_functions()
         err = putchar(c);
         if(err == EOF || ferror(stdout))
         {
-            printf("Error putting char using method int putchar(int c)");
+            printf("\nError putting char using method int putchar(int c)");
             clearerr(stdout);
             return 1;
         }
         printf("\nWrite a character(int getc(FILE* stream)): ");
         c = getc(stdin);
+        if(c == EOF || ferror(stdin))
+        {
+            printf("\nError getting char that you wrote(int getc(FILE* stream)");
+            clearerr(stdin);
+            return 1;
+        }
+        printf("\nPutting the char that you wrote(int putc(FILE* stream))");
+        c = putc(c, stdout);
+        if(c == EOF || ferror(stdout))
+        {
+            printf("\nError putting the char that you wrote(int putc(int c, FILE* stream))");
+            clearerr(stdout);
+            return 1;
+        }
         printf("\nWrite a character(int fgetc(FILE* stream)): ");
         c = fgetc(stdin);
+        if(c == EOF || ferror(stdin))
+        {
+            printf("\nError getting char that you wrote(int fgetc(FILE* stream)");
+            clearerr(stdin);
+            return 1;
+        }
+        printf("\nPutting the character to the stdout(fputc(int c, FILE* stream)): ");
+        c = fputc(c, stdout);
+        if(c == EOF || ferror(stdout))
+        {
+            printf("\nError putting the char that you wrote(int fputc(int c, FILE* stream))");
+            clearerr(stdout);
+            return 1;
+        }
+        printf("\n");
     }
     return 0;
 }
