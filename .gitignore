@@ -5,7 +5,7 @@
 **/.vscode
 
 # Ignoring compiled on windows
-**/compile.exe
+**/*.exe
 
 # Ignoring this type of files because somethimes I forget that I have to write compiled instead of compile
 **/compile
