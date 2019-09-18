@@ -12,3 +12,6 @@
 
 # Ignoring files buffered
 **/*.swp
+
+# Ignoring backup files
+**/*backup*
