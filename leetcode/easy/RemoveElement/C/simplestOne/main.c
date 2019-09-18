@@ -1,5 +1,25 @@
 #include <stdio.h>
 
+int removeElement(int* nums, int numsSize, int val)
+{
+    for(int i = 0; i < numsSize;)
+    {
+        if(nums[i] == val)
+        {
+            for(int j = i; j < numsSize-1; j++)
+            {
+                nums[j] = nums[j+1];
+            }
+            numsSize--;
+        }
+        else
+        {
+            i++;
+        }
+    }
+    return numsSize;
+}
+
 void display(int *arr, int len)
 {
     for(int i = 0; i < len; i++)
@@ -7,30 +27,13 @@ void display(int *arr, int len)
     printf("\n");
 }
 
-int removeElement(int* nums, int numsSize, int val)
-{
-    int len = 0;
-    int swap;
-    for(int i = 0; i < numsSize; i++)
-    {
-        if(nums[i] == val)
-        {
-            len--;
-            for(int j = i; j < numsSize-1; j++)
-            {
-                nums[j] = nums[j+1];
-            }
-        }
-    }
-    return numsSize + len;
-}
 
 int main(void)
 {
-    int arr[] = {3, 2, 2, 3};
-    int len = 4;
-    int val = 3;
-    printf("Length of the final arr: %d\n", removeElement(arr, 4, val));
-    display(arr); 
+    int arr[] = {0,1,2,2,3,0,4,2};  
+    int len = 8;
+    int val = 2;
+    printf("Length of the final arr: %d\n", removeElement(arr, len, val));
+    display(arr, len); 
     return 0;
 }
