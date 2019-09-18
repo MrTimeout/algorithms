@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+// +++++++++++++++++++++++++++++++++++ BUGS ++++++++++++++++++++++++++++++++++++++ //
+// Never use gets(). Because it is impossible to tell without knowing 
+// the data in advance how many characters gets() will read, and because
+// gets() will continue to store characters past the end of the buffer, 
+// it is extremely dangerous to use. It has been used to break computer
+// security. Use fgets() instead.
+
+int equivalence_of_functions()
+{
+    int len = 5;
+    int c, err;
+    for(int i = 0; i < len; i++)
+    {
+        printf("Write a character(int getchar(void)): ");
+        c = getchar();
+        if(c == EOF || ferror(stdin))
+        {
+            printf("Error getting char using method int getchar(void)");
+            clearerr(stdin);
+            return 1;
+        }
+        printf("\nPutting the char that you wrote(void putchar(char c)): ");
+        err = putchar(c);
+        if(err == EOF || ferror(stdout))
+        {
+            printf("Error putting char using method int putchar(int c)");
+            clearerr(stdout);
+            return 1;
+        }
+        printf("\nWrite a character(int getc(FILE* stream)): ");
+        c = getc(stdin);
+        printf("\nWrite a character(int fgetc(FILE* stream)): ");
+        c = fgetc(stdin);
+    }
+    return 0;
+}
+
+int main(void)
+{
+    if(equivalence_of_functions() == 0)
+    {
+        printf("All perfect brop\n");
+    }
+    else
+    {
+        printf("There was a problem");
+    }
+    return 0;
+}
