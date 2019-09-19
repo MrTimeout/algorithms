@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern unsigned int str_len(char * c);
-extern unsigned char rand_char(int c, int times);
-int rand_char_internal(int from, int to);
-
 extern unsigned int str_len(c)
 char * c;
 {

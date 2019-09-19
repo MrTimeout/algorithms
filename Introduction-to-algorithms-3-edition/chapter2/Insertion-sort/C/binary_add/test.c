@@ -7,15 +7,16 @@
 
 int test_strlen(int cases)
 {
-    unsigned int len, result;
-    unsigned int max_len = 49, min_len = 2;
+    int len, result, choose;
+    int max_len = 49, min_len = 2;
     char * c; 
     cases = cases <= 0 ? DEFAULT_CASES : cases;
     for(int i = 0; i < cases; i++)
     {
 `       len = rand() % max_len + min_len;
+        choose = rand() % 3;
         c = malloc(sizeof(char) * len);
-        c = rand_char(len-1);
+        c = rand_char(choose, len-1);
         if((result = str_len(c)) != len)
         {
             fprintf(stderr, "Error getting len of the str %s:\nexpected: %d\ngot: %s\n", c, len, result);
