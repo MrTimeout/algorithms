@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "rubbish.h"
 
 extern unsigned int str_len(c)
 char * c;
 {
     int i = 0;
-    while(*(++c) != NULL)
+    while(*(c++) != '\0')
     {
         i++;
     }
@@ -47,7 +48,7 @@ int times;
     {
         r[i] = rand() % (to-from) + from; 
     }
-    r[times] = NULL;
+    r[times] = '\0';
     return r;
 }
 
