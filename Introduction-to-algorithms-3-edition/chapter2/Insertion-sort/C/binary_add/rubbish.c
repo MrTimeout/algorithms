@@ -52,3 +52,12 @@ int times;
     return r;
 }
 
+void display(a, lenA)
+int * a;
+int lenA;
+{
+    for(int i = 0; i < lenA; i++)
+        printf("%d ", *(a+i));
+    printf("\n");
+}
+
