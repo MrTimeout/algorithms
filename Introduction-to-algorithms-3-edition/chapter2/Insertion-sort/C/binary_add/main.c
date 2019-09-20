@@ -18,9 +18,9 @@ int lenA;
 unsigned int strlen(char * c)
 {
     int i = 0;
-    while(*(c++) != NULL)
+    while(*(c++) != '\0')
     {
-        count++;
+        i++;
     }
     return i;
 }
