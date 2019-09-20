@@ -50,9 +50,7 @@ int pow(a, b)
 int a, b;
 {
     for(int i = 0; i < b; i++)
-    {
         a *= a;
-    }
     return a;
 }
 
@@ -94,6 +92,5 @@ char ** argv;
         fprintf(stderr, "Error getting params because there are not enough. It needed two\n");
         exit(1);
     }
-    
 }
 
