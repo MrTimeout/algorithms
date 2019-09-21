@@ -53,7 +53,7 @@ bool n;
         exit(1);
     }
     len = str_len(c);
-    
+    p = poww(10, len-1);
     return true;
 }
 
