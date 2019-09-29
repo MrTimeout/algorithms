@@ -15,3 +15,6 @@
 
 # Ignoring backup files
 **/*backup*
+
+#Ignoring the output files that compiler give as
+**/*.out
