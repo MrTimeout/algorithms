@@ -16,5 +16,9 @@
 # Ignoring backup files
 **/*backup*
 
-#Ignoring the output files that compiler give as
+# Ignoring the output files that compiler give as
 **/*.out
+
+# Ignoring the class files
+**/*.class
+
