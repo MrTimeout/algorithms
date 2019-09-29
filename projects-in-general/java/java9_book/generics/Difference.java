@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Difference
 {
-
+    @SuppressWarnings()
     public static void deleteCasts()
     {
         //Requires casting
@@ -40,9 +40,7 @@ public class Difference
         Box<Integer> inte = new Box<Integer>();
         inte.set(new java.lang.Integer(1));
         System.out.println(inte.get());
-        
     }
-
 }
 
 class Box<T>
@@ -103,6 +101,5 @@ class Pair<K,V> implements P<K,V>
     {
         return String.format("{ Key: %d, Value: %b }\n", this.key, this.value);
     }
-
 }
 
