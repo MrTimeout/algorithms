@@ -22,11 +22,9 @@ class Solution {
 
 public class mapping
 {
-    
     public static void main(String[] args)
     {
         int[] cases = new int[]{2, 2, 1};
         System.out.println((new Solution()).singleNumber(cases));
     }
-
 }
