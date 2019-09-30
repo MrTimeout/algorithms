@@ -24,6 +24,7 @@ public class fileObject
                     System.out.printf("%s less than %s\n", toString(f), toString(c));
                 break;
              }
+             System.out.println(toString(f));
         } 
     }
 
@@ -35,7 +36,7 @@ public class fileObject
 
     public static java.lang.String toString(java.io.File f)
     {
-        return String.format("{\n\t'AbsolutePath': %s,\n\t'Name': %s,\n\t'Parent': %s,\n\t'Path': %s,\n}",
+        return String.format("\n{\n\t'AbsolutePath': %s,\n\t'Name': %s,\n\t'Parent': %s,\n\t'Path': %s,\n}",
                              f.getAbsolutePath(),
                              f.getName(),
                              f.getParent(),
