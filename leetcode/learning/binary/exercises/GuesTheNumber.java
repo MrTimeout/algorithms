@@ -8,12 +8,16 @@ public class Solution extends GuessGame {
         int t, mid, lo = 1, hi=n;
         if(n == 1)
             return 1;
+        if(n == Integer.MAX_VALUE && guess(n) == 0)
+            return n;
+        if(n == Integer.MIN_VALUE && guess(n) == 0)
+            return n;
         mid = (lo+hi)/2;
         while((t=guess(mid)) != 0)
         {
             if(t==1) { lo=mid+1; }
             else if(t == -1) { hi=mid-1; }
-            mid=(int)((float)lo/2 + (float)hi/2);
+            mid=lo + (hi-lo)/2;
         }
         return mid;
     }
