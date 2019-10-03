@@ -2,8 +2,10 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.lang.reflect.Type;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class Person 
 {
@@ -67,7 +69,13 @@ public class Person
         return String.format("Name: %s, Age: %d, Cars: %s", this.name, this.age, this.getCarsString());
     }
 
-    public static void t()
+    public static void printAllPerson(List<Person> l)
+    {
+        for(Person p: l)
+            System.out.println(p.toString());
+    }
+
+    public static void readFromStringANdToStringAnObject()
     {
         String info = "{'name': 'John', 'age': 30, 'cars': ['Ford', 'BMW', 'Fiat']}";
         Gson gson = new Gson();
@@ -78,9 +86,17 @@ public class Person
         System.out.println(p.toString());
     }
 
+    public static void readFromStringAList()
+    {
+        String info = "[{'name': 'Borego', 'age': 34, 'cars': ['Ford', 'Fiat']}, {'name': 'Ivan', 'age': 21, 'cars': ['Ford', 'Fiat']}]";
+        Gson gson = new Gson();
+        Type l = new TypeToken<List<Person>>() {}.getType();
+        printAllPerson(gson.fromJson(info, l));
+    }
+
     public static void main(String[] args)
     {
-        t();   
+        readFromStringAList();
     }
 
 }
