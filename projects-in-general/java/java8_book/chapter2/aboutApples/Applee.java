@@ -45,7 +45,7 @@ public class Applee
 
     public static void seventhAttempt()
     {
-        printAllInventory(Apple.filter(radomApples(10), (Apple apple) -> "red".equals(apple.getColor())));
+        printALL(Generic.filter(randomApples(10), (Apple apple) -> "red".equals(apple.getColor())));
     }
 
     public static java.util.List<Apple> randomApples(int n)
@@ -56,6 +56,12 @@ public class Applee
         for(int i = 0; i < n; i++)
             r.add(new Apple(colors[rand.nextInt(colors.length)], rand.nextInt(1000)+1));
         return r;   
+    }
+
+    public static <T> void printALL(List<T> list)
+    {
+        for(T t: list)
+            System.out.println(t);
     }
 
     public static void printAllInventory(java.util.List<Apple> l)
@@ -163,14 +169,7 @@ class Apple
             System.out.println(af.formatter(a));
     }
 
-    public static List<T> filter(List<T> l, Predicate p)
-    {
-        List<T> r = new ArrayList<T>();
-        for(T t: l)
-            if(p.test(t))
-                r.add(t);
-        return r;
-    }
+
 
     @Override
     public java.lang.String toString()
@@ -178,4 +177,16 @@ class Apple
         return String.format("Weight: %3d, Color: %s", this.w, this.color);
     }
 
+}
+
+class Generic
+{
+    public static <T> List<T> filter(List<T> l, Predicate<T> p)
+    {
+        List<T> r = new ArrayList<T>();
+        for(T t: l)
+            if(p.test(t))
+                r.add(t);
+        return r;
+    }
 }
