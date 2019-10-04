@@ -14,6 +14,25 @@ public class Applee
         Apple.filterPrinterApple(Apple.filterApples(randomApples(10), new AppleHeavyWeightPredicate()), new AppleRudeFormatter());
     }
 
+    public static void fifthAttempt()
+    {
+        System.out.println("Getting all the apples that are green: ");
+        Apple.filterPrinterApple(Apple.filterApples(randomApples(10), new ApplePredicate()
+            {
+                public boolean test(Apple apple)
+                {
+                    return apple.getW() > 500;
+                }
+            }), 
+        new AppleFormatter()
+        {
+            public String formatter(Apple apple)
+            {
+                return String.format("This is an %s apple", "red".equals(apple.getColor()) ? "awesome" : "boring");
+            }
+        });
+    }
+
     public static java.util.List<Apple> randomApples(int n)
     {
         String[] colors = new String[]{ "red", "green", "blue" };
@@ -34,6 +53,7 @@ public class Applee
     public static void main(String[] args)
     {
         fourthAttempt();
+        fifthAttempt();
     }
 
 }
