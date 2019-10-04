@@ -33,6 +33,21 @@ public class Applee
         });
     }
 
+    public static void sixthAttempt()
+    {
+        Apple.filterPrinterApple(
+                Apple.filterApples(
+                    randomApples(10), (Apple apple) -> "red".equals(apple.getColor())
+                ),
+            (Apple apple) -> String.format("this is a %s and %s apple", apple.getW() > 500 ? "Heavy" : "light", apple.getColor())
+        );
+    }
+
+    public static void seventhAttempt()
+    {
+        printAllInventory(Apple.filter(radomApples(10), (Apple apple) -> "red".equals(apple.getColor())));
+    }
+
     public static java.util.List<Apple> randomApples(int n)
     {
         String[] colors = new String[]{ "red", "green", "blue" };
@@ -54,6 +69,8 @@ public class Applee
     {
         fourthAttempt();
         fifthAttempt();
+        sixthAttempt();
+        seventhAttempt();
     }
 
 }
@@ -66,6 +83,11 @@ interface ApplePredicate
 interface AppleFormatter
 {
     String formatter(Apple apple);
+}
+
+interface Predicate<T>
+{
+    boolean test(T t);
 }
 
 class AppleGreenColorPredicate implements ApplePredicate
@@ -139,6 +161,15 @@ class Apple
     {
         for(Apple a: l)
             System.out.println(af.formatter(a));
+    }
+
+    public static List<T> filter(List<T> l, Predicate p)
+    {
+        List<T> r = new ArrayList<T>();
+        for(T t: l)
+            if(p.test(t))
+                r.add(t);
+        return r;
     }
 
     @Override
