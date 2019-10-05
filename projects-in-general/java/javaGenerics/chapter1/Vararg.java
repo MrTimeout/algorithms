@@ -44,6 +44,7 @@ public class Vararg
                         System.out.printf("This is the %s element\n", str);
                     }   
                 });
+        Test.something();
     }
 
 }
@@ -52,5 +53,17 @@ public class Vararg
 interface Consumer<T>
 {
     void accept(T t);
+}
+
+class Test
+{
+    
+    public static void something()
+    {
+        List<Integer> ints = Vararg.<Integer>toListVarags();
+        List<Object> objs = Vararg.<Object>toListVarags(1, "Hey");
+        //But we cant do <Integer>toListVararg(); from the proper class. It will confuse the parser...
+    }
+
 }
 
