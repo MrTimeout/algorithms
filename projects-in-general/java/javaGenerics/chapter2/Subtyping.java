@@ -2,6 +2,7 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Arrays;
 
 public class Subtyping
 {
@@ -23,7 +24,7 @@ public class Subtyping
                 {
                     public void accept(Integer n)
                     {
-                        System.out.println(n);
+                        System.out.printf("java.lang.Integer: %s ", n.toString());
                     }   
                 });
         
@@ -34,27 +35,54 @@ public class Subtyping
                 {
                     public void accept(Number n)
                     {
-                        System.out.println(n);
+                        System.out.printf("java.lang.Number: %s ", n.toString());
                     }       
-                });
-
+                }
+             );
     } 
+
+    public static void wildcards()
+    {
+        List<Number> nums = new ArrayList<Number>(); // java.util.List<Number> is a subtype of java.util.Collection<Number>
+        List<Integer> ints = Arrays.asList(1, 2);
+        List<Double> doubles = Arrays.asList(1.5, 2.5);
+        nums.addAll(ints); // java.util.List<Integer> is a subtype of java.util.Collection<? extends Number>
+        nums.addAll(doubles); // java.util.List<Double> is a subtype of java.util.Collection<? extends Number>
+        printAll(nums, new Consumer<Number>()
+                    {
+                        public void accept(Number n)
+                        {
+                            System.out.printf("java.lang.Number: %s ", n.toString());
+                        }
+                    }
+                );
+
+        List<Integer> integers = new ArrayList<Integer>();
+        integers.add(1);
+        integers.add(2);
+        List<? extends Number> numss = integers;
+        //numss.add(3.14); // You cant add another value, for this we need other type of type xddd
+        
+    }
 
     public static <T> void print(T[] arr, Consumer<T> c)
     {
         for(T t: arr)
             c.accept(t);
+        System.out.println("");
     }
 
     public static <T> void printAll(List<T> l, Consumer<T> c)
     {
         for(T t: l)
             c.accept(t);
+        System.out.println("");
     }
     
     public static void main(String... args)
     {
         numbers();
+        wildcards();
     }
 
 }
