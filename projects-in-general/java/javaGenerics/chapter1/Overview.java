@@ -8,6 +8,45 @@ public class Overview
 {
 
     /**
+     * The foreach loop can be used in any object that implements the interface java.lang.Iterable<E>, which in turn refers to java.util.Iterator<E>
+     * interface Iterable<E>
+     * {
+     *      public Iterator<E> iterator();
+     * }
+     * interface Iterator<E>
+     * {
+     *      public E next();
+     *      public boolean hasNext();
+     *      public void remove();
+     * }
+     */
+    public static void forEach()
+    {
+        List<Integer> l = Arrays.asList(1, 2, 3);
+        int sum = 0;
+
+        for(int s: l)
+           sum += s;
+
+        assert sum == 6; 
+
+        sum = 0;
+        for(Iterator<Integer> it = l.iterator(); it.hasNext();)
+            sum += it.next();
+
+        assert sum == 6;
+
+        int[] arr = new int[]{1, 2, 3};
+        sum = 0;
+
+        for(int a: arr)
+            sum += a;
+
+        assert sum == 6;
+
+    }
+
+    /**
      * It is required to use cache when converting(boxing) an int, short value from [-128, 127], a char from '\u0000' to '\u007f', a byte or a boolean to his wrapper class.
      *
      */
@@ -99,6 +138,7 @@ public class Overview
         looping();
         loopingStrings();
         equivalence();
+        forEach();
     }
 
 }
