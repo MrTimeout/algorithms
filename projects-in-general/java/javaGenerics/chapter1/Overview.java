@@ -28,6 +28,13 @@ public class Overview
 
         assert sum == 6;
 
+        int[] intArr = new int[]{ 1, 2, 3 };
+        sum = 0;
+
+        for(int i = 0; i < intArr.length; i++) sum += intArr[i];
+
+        assert sum == 6;
+
     }
     
     public static void main(String[] args)
