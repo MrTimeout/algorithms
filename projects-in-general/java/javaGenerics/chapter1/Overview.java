@@ -1,10 +1,67 @@
 
 import java.util.List;
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Overview
 {
+
+    /**
+     * It is required to use cache when converting(boxing) an int, short value from [-128, 127], a char from '\u0000' to '\u007f', a byte or a boolean to his wrapper class.
+     *
+     */
+    public static void equivalence()
+    {
+        List<Integer> ints = new ArrayList<Integer>();
+        ints.add(1);
+        ints.add(new Integer(2)); //second and third option are similar, but the next can cache the value to optimize the execution
+        ints.add(Integer.valueOf(3));
+
+        List<Integer> intss = Arrays.asList(100, 200, 300);
+
+        assert sumInts(intss) == sumIntegers(intss);
+        assert sumIntegers(intss) != sumIntegers(intss); // NOT RECOMMEND
+
+        assert sumInts(ints) == sumIntegers(ints);
+        assert sumIntegers(ints) == sumIntegers(ints); //Because it uses cache. Remember that the value is a int < 127 and > -128. NOT RECOMMEND
+
+    }
+
+    public static int sumInts(List<Integer> ints)
+    {
+        int sum = 0;
+        for(int i: ints) sum += i; //Autoboxing from Integer to int using the wrapper class java.lang.Integer
+        return sum;
+    }
+
+    public static java.lang.Integer sumIntegers(List<Integer> integers)
+    {
+        Integer sum = new Integer(0);
+        for(Integer i: integers) sum += i;
+        return sum;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void loopingStrings()
+    {
+        //Before Generics
+        List words = new ArrayList();
+        words.add("Hello ");
+        words.add("World!");
+        String s = ((String) words.get(0)) + ((String) words.get(1));
+
+        assert "Hello World!".equals(s);
+
+        //After generics
+        List<String> wordsG = new ArrayList<String>();
+        wordsG.add("Hello ");
+        wordsG.add("World!");
+        String sG = wordsG.get(0) + wordsG.get(1);
+        
+        assert "Hello World!".equals(sG);
+
+    }
 
     public static void looping()
     {
@@ -40,6 +97,8 @@ public class Overview
     public static void main(String[] args)
     {
         looping();
+        loopingStrings();
+        equivalence();
     }
 
 }
