@@ -44,6 +44,27 @@ public class Overview
 
         assert sum == 6;
 
+        List<Integer> li = new ArrayList<>(Arrays.asList(0, 1, 2)); //Remember not to use Arrays when you want to remove a position, rigth??
+        for(Iterator<Integer> it = li.iterator(); it.hasNext();)
+            if(it.next()%2 == 0)
+                it.remove();
+        System.out.println(li); 
+
+        System.out.println(dot(new ArrayList<Double>(Arrays.asList(1.0, 2.0, 3.0, 4.0)), new ArrayList<Double>(Arrays.asList(1.0, 2.0, 3.0, 4.0))));
+
+    }
+
+    public static double dot(List<Double> u, List<Double> v)
+    {
+        if(u.size() != v.size())
+            throw new IllegalArgumentException("You have to write two vectors with the same length.");
+        double d = 0;
+        Iterator<Double> ui = u.iterator();
+        Iterator<Double> vi = v.iterator();
+        while(ui.hasNext())
+            d += ui.next() * vi.next();
+        assert !ui.hasNext() && !vi.hasNext();
+        return d;
     }
 
     /**
