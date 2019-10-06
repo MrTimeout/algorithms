@@ -20,7 +20,7 @@ public class Subtyping
         ints.add(3);
         // List<Number> numss = ints; -- compilation error. Remember that Integer is a subtype of Number, but not List<Integer> is a subtype of List<Number>
         ints.add(2);
-        printAll(ints, new Consumer<Integer>()
+        Print.printAll(ints, new Consumer<Integer>()
                 {
                     public void accept(Integer n)
                     {
@@ -31,7 +31,7 @@ public class Subtyping
         Integer[] integers = new Integer[]{1, 2, 3, 4};
         Number[] numbers = integers;
 
-        print(numbers, new Consumer<Number>()
+        Print.print(numbers, new Consumer<Number>()
                 {
                     public void accept(Number n)
                     {
@@ -48,7 +48,7 @@ public class Subtyping
         List<Double> doubles = Arrays.asList(1.5, 2.5);
         nums.addAll(ints); // java.util.List<Integer> is a subtype of java.util.Collection<? extends Number>
         nums.addAll(doubles); // java.util.List<Double> is a subtype of java.util.Collection<? extends Number>
-        printAll(nums, new Consumer<Number>()
+        Print.printAll(nums, new Consumer<Number>()
                     {
                         public void accept(Number n)
                         {
@@ -65,6 +65,67 @@ public class Subtyping
         
     }
 
+    /**
+     * put and get rule! if you want to get from a type list, use <? extends T> but if you want to put in the list, you have to use <? super T>
+     */ 
+    public static <T> void copy(List<? super T> dst, List<? extends T> src)
+    {
+        for(int i = 0; i < src.size(); i++)
+            dst.set(i, src.get(i));
+        Print.printXD(dst);
+    }
+
+    
+    public static double sumDouble(List<? extends Number> nums)
+    {
+        double d = 0.0;
+        for(Number n: nums)
+            d += n.doubleValue();
+        return d;
+    }
+    
+    public static void main(String... args)
+    {
+        numbers();
+        wildcards();
+        Test.testingCopy();
+        Test.testingSumDouble();
+    }        
+
+}
+
+@FunctionalInterface
+interface Consumer<T>
+{
+    void accept(T t);
+}
+
+class Test
+{
+    
+    public static void testingSumDouble()
+    {
+        System.out.println(Subtyping.sumDouble(Arrays.<Integer>asList(1, 2, 3)));
+        System.out.println(Subtyping.sumDouble(Arrays.<Number>asList(1, 2, 3)));
+        System.out.println(Subtyping.sumDouble(Arrays.<Double>asList(1.0, 2.0, 3.0)));
+    }
+
+    public static void testingCopy()
+    {
+        List<Integer> ints = Arrays.<Integer>asList(1, 2, 3);
+
+        List<Integer> intss = Arrays.<Integer>asList(1, 2, 3, 4); 
+        Subtyping.copy(intss, ints);
+
+        List<Object> objs = Arrays.<Object>asList(1, "hey", 1.3);
+        Subtyping.copy(objs, ints);
+    }
+
+}
+
+class Print
+{
+
     public static <T> void print(T[] arr, Consumer<T> c)
     {
         for(T t: arr)
@@ -78,19 +139,14 @@ public class Subtyping
             c.accept(t);
         System.out.println("");
     }
-    
-    public static void main(String... args)
+
+    public static <T> void printXD(List<? extends T> l)
     {
-        numbers();
-        wildcards();
+        for(int i = 0; i < l.size(); i++)
+            System.out.printf("java.lang.?: %s ", l.get(i).toString());
+        System.out.println("");
     }
 
-}
-
-@FunctionalInterface
-interface Consumer<T>
-{
-    void accept(T t);
 }
 
 /**
