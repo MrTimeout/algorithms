@@ -60,8 +60,14 @@ public class Subtyping
         List<Integer> integers = new ArrayList<Integer>();
         integers.add(1);
         integers.add(2);
-        List<? extends Number> numss = integers;
+        List<? extends Number> numsExtends = integers;
+        List<? super Integer> intsSu = integers;
+        List<? extends Integer> intsEx = integers;
         //numss.add(3.14); // You cant add another value, for this we need other type of type xddd
+        System.out.println("Printing the numbers that were created using <? extends Number>");
+        Print.printXD(numsExtends);
+
+        Print.addAll(intsSu, intsEx);
         
     }
 
@@ -143,7 +149,7 @@ class Print
     public static <T> void printXD(List<? extends T> l)
     {
         for(int i = 0; i < l.size(); i++)
-            System.out.printf("java.lang.?: %s ", l.get(i).toString());
+            System.out.printf("java.lang.%s: %s ", l.get(i).getClass().getCanonicalName(), l.get(i).toString());
         System.out.println("");
     }
 
