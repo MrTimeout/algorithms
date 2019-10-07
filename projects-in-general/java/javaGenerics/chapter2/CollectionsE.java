@@ -57,6 +57,24 @@ class Test
         });
 
     }
+
+    public static <T> void testCopyExtends()
+    {
+        List<Integer> ints = new ArrayList<Integer>(Arrays.<Integer>asList(1, 2, 3, 4, 5));
+        List<Number> nums = new ArrayList<Number>(Arrays.<Number>asList(0,0,0,0,0));
+
+        assert ints.size() == nums.size();
+
+        System.out.println("Before copying in extends form <? extends T>");
+        Print.processConsumer(nums, (Number i) -> System.out.printf("class: %s -> %d\n", i.getClass().getCanonicalName(), i.intValue()));
+
+        Garbage.copyE(nums, ints);
+
+        System.out.println("After copying in extends form <? extends T>");
+        Print.processConsumer(nums, (Number i) -> System.out.printf("class: %s -> %d\n", i.getClass().getCanonicalName(), i.intValue()));
+
+    }
+
 }
 
 interface Consumer<T>
@@ -91,6 +109,14 @@ class Garbage
     }
 
     public static <T> void copyy(List<T> dst, List<T> src)
+    {
+        if(src.size() <=0 || src.size() > dst.size())
+            throw new java.lang.IllegalArgumentException("Error parsing arguments");
+        for(int i = 0; i < src.size(); i++)
+            dst.set(i, src.get(i));
+    }
+
+    public static <T> void copyE(List<T> dst, List<? extends T> src)
     {
         if(src.size() <=0 || src.size() > dst.size())
             throw new java.lang.IllegalArgumentException("Error parsing arguments");
