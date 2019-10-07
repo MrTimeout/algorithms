@@ -22,7 +22,17 @@ class Test
         List<Number> nums = new ArrayList<Number>(Arrays.<Number>asList(1, 2, 3, 8.4));
         System.out.printf("Sum( ");
         Print.processConsumer(nums, (Number n) -> System.out.printf("%.2f ", n.doubleValue())); 
-        System.out.printf(") = %.2f", Garbage.sumDouble(nums));
+        System.out.printf(") = %.2f\n", Garbage.sumDouble(nums));
+
+        List<Integer> ints = new ArrayList<Integer>(Arrays.<Integer>asList(1, 2, 3, 4, 5));
+        System.out.printf("Sum( ");
+        Print.processConsumer(ints, (Integer n) -> System.out.printf("%.2f ", n.doubleValue())); 
+        System.out.printf(") = %.2f\n", Garbage.sumDouble(nums));
+
+        List<Double> doubles = new ArrayList<Double>(Arrays.<Double>asList(1.0, 2.0, 3.0, 4.0, 5.0));
+        System.out.printf("Sum( ");
+        Print.processConsumer(doubles, (Double n) -> System.out.printf("%.2f ", n.doubleValue())); 
+        System.out.printf(") = %.2f\n", Garbage.sumDouble(nums));
     }
 }
 
