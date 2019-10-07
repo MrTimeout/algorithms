@@ -28,6 +28,7 @@ public class InputStreamExamples
         java.io.InputStream input = null;
         int data, amount;
         byte[] buffer = new byte[50];
+        java.util.List<Byte> bytes;
         try
         {
             input = new java.io.FileInputStream("test.txt"); 
@@ -50,15 +51,19 @@ public class InputStreamExamples
                 System.out.printf("%c", data);
             }
             System.out.println("We reset to the first character of the InputStream");
-            input.reset();
+            if(input.markSupported())
+                input.reset();
+            else
+                System.out.println("Mark is not supported");
             
-            System.out.printf("We are skipping the first line, an amount of %d bytes\n", amount);
-            input.skip((long) amount);
+            if(input.markSupported())
+            {
+                System.out.printf("We are skipping the first line, an amount of %d bytes\n", amount);
+                input.skip((long) amount);
+            }
 
             System.out.println("We are going to read the next line because we know the length");
             input.read(buffer, 0, 5);
-
-            printArr(java.util.Arrays.<Byte>asList(buffer));
 
             System.out.printf("There are available %d bytes\n", input.available());
         }
@@ -73,11 +78,10 @@ public class InputStreamExamples
         }
     }
 
-    public static <T> void printArr(java.util.List<T> arg)
+    public static <T> void printArr(java.util.List<T> arg, Consumer<T> c)
     {
-        System.out.println("Printing array of things");
         for(T t: arg)
-            System.out.print(t);
+            c.accept(t);
         System.out.println("");
     }
 
@@ -87,6 +91,12 @@ public class InputStreamExamples
         allMethodsOfInputStream();
     }
 
+}
+
+@FunctionalInterface
+interface Consumer<T>
+{
+    void accept(T t);
 }
 
 
