@@ -8,22 +8,21 @@ public class Solution {
 
     private static final java.util.Scanner scan = new java.util.Scanner(System.in);
 
-    static int subarray(int[] arr)
+    static int subArray(int[] arr)
     {
-        int c = 0, temp, k;
-        for(int i = 0; i < arr.length; i++)
+        int c = 0, sum;
+        for(int k = 0; k < arr.length; k++)
         {
-            if(arr[i] < 0)
+            for(int i = 0; i+k < arr.length; i++)
             {
-                temp = 0;
-                k = 0;
-                while(i - k >= 0 && (temp += arr[i-k]) < 0)
-                    c++;
-                temp = 0;
-                while(i + k < arr.length && (temp += arr[i-k]) < 0)
+                sum = 0;
+                for(int j = i; j <= i+k; j++)
+                    sum += arr[j];
+                if(sum < 0)
                     c++;
             }
         }
+        return c;
     }
 
     static void printArr(int[] arr)
@@ -37,6 +36,7 @@ public class Solution {
         int[] arr = new int[length];
         for(int i = 0; i < arr.length; i++)
             arr[i] = scan.nextInt();
-        
+        System.out.println(subArray(arr));
     }
 }
+
