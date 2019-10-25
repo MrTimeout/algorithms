@@ -27,4 +27,8 @@ This is going to be a hard path to follow because algortihms are hard, but beaut
 
 * Go
 
-* I dont know
+* java
+
+* python
+
+* clojure
